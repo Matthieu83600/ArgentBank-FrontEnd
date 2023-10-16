@@ -4,7 +4,7 @@ import Form from '../../components/Form.jsx';
 import Footer from '../../components/Footer.jsx';
 import '../../sass/pages/_SignIn.scss';
 
-function SignIn () {
+function Login () {
     return (
         <div className='signin-page'>
             < Header />
@@ -17,4 +17,4 @@ function SignIn () {
     )
 }
 
-export default SignIn;
+export default Login;
