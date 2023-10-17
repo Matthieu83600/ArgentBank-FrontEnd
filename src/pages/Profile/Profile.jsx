@@ -4,7 +4,6 @@ import User from '../../components/User.jsx';
 import Account from '../../components/Account.jsx';
 import Footer from '../../components/Footer.jsx';
 import AccountCardData from '../../data/AccountCardData.json';
-import '../../sass/pages/_Profile.scss';
 
 function UserProfile () {
     return (
