@@ -8,7 +8,7 @@ function Login () {
     return (
         <div className='signin-page'>
             < Header />
-            <main id='bg-dark'>
+            <main className='bg-dark'>
                 < Form />
             </main>
             < Footer />
