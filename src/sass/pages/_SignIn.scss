@@ -1,4 +1,6 @@
-.bg-dark { padding-bottom: 12.5rem;
+.bg-dark { min-height: 580px;
+           padding-bottom: 3rem;
            padding-top: 3rem;
-           @media (max-width: 920px) {padding-bottom: 18.4rem;}
+           @media (max-width: 920px) {min-height: 750px;}
+           @media (min-width: 1900px) {min-height: 820px;}
          }
