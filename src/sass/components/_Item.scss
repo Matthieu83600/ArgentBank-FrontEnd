@@ -5,6 +5,7 @@
                 margin: 0 auto;            
                 padding: 2.5rem;
                 width: 33%;
+                @media (max-width: 920px) {width: 100%;}
                 &-icon { border: 10px solid #00bc77;
                          border-radius: 50%;
                          padding: 1rem;
