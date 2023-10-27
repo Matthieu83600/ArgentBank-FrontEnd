@@ -9,18 +9,18 @@ function Form () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const [error, setError] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!isValidEmail(email)) {
-            setError("Invalid email adress");
+            setErrorMessage("Invalid email adress");
             return;
         }
         if (!isValidPassword(password)) {
-            setError("Invalid password");
+            setErrorMessage("Invalid password");
             return;
         }
         try {
@@ -37,6 +37,7 @@ function Form () {
                 dispatch(loginSuccess(token));
                 navigate('/profile');
             } else {
+                const error = "Incorrect email/password"
                 dispatch(loginFailed(error));
             }
         } catch (error) {
@@ -79,7 +80,7 @@ function Form () {
                 <button className="sign-in-button">
                     Sign In
                 </button>
-                {error && <p className='error-message'>{error}</p>}
+                {errorMessage && <p className='error-message'>{errorMessage}</p>}
             </form>
         </section>
     )
