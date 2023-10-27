@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../components/Header.jsx';
 import Form from '../../components/Form.jsx';
 import Footer from '../../components/Footer.jsx';
 import '../../sass/pages/_SignIn.scss';
@@ -7,7 +6,6 @@ import '../../sass/pages/_SignIn.scss';
 function Login () {
     return (
         <div className='signin-page'>
-            < Header />
             <main className='bg-dark'>
                 < Form />
             </main>

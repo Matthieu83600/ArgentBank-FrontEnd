@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import GreenError from '../../assets/images/404-green.webp';
 import '../../sass/pages/_Error.scss';
@@ -8,7 +7,6 @@ import '../../sass/pages/_Error.scss';
 function Error () {
     return (
         <div className="error-page">
-            <Header />
             <main>
                 <section className="error">
                     <h2 className="sr-only">Error 404</h2>
