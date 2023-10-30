@@ -6,3 +6,5 @@ export const LOGOUT = "LOGOUT";
 export const REMEMBER_ME = "REMEMBER_ME";
 
 /* USER PROFILE */
+
+export const GET_USERPROFILE = "GET_USERPROFILE"

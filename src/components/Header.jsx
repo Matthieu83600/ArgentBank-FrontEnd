@@ -7,6 +7,7 @@ import '../sass/components/_Header.scss';
 
 function Header () {
     const isConnected = useSelector((state) => state.auth.isConnected)
+    const firstname = useSelector((state) => state.auth.user.firstname)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,8 +29,7 @@ function Header () {
                     <div className='connected'>
                         <Link to='/Profile'>
                             <i className='fa-solid fa-2x fa-circle-user' />
-                            { /* A changer lors de la récupération des comptes via API*/}
-                            <p> Tony  </p>
+                            <p>{firstname}</p>
                         </Link>
                         <Link to='/' onClick={logoutHandler}>
                             <i className='fa-solid fa-arrow-right-from-bracket' />
