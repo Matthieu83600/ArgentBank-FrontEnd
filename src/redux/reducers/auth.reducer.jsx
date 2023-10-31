@@ -6,7 +6,7 @@ export const authReducer = (state = initialState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                status: "SUCCEEDED",
+                status: "CONNECTED",
                 isConnected: true,
                 token: action.payload,
                 error: null
@@ -14,6 +14,7 @@ export const authReducer = (state = initialState, action) => {
         case GET_USERPROFILE:
             return {
                 ...state,
+                status: "SUCCEEDED",
                 user: {
                     ...state.user,
                     firstname: action.payload.firstname,
