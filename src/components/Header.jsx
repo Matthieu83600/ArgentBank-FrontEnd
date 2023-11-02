@@ -6,8 +6,8 @@ import { logout } from '../redux/actions/auth.actions';
 import '../sass/components/_Header.scss';
 
 function Header () {
-    const isConnected = useSelector((state) => state.auth.isConnected)
-    const firstname = useSelector((state) => state.auth.user.firstname)
+    const isConnected = useSelector((state) => state.auth.token);
+    const firstname = useSelector((state) => state.user.firstname);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

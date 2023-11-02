@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginFailed, loginSuccess } from '../redux/actions/auth.actions';
-import { isValidEmail, isValidPassword } from '../utils/regex';
+import { loginFailed, loginSuccess } from '../redux/actions/auth.actions.jsx';
+import { isValidEmail, isValidPassword } from '../utils/regex.jsx';
 import '../sass/components/_Form.scss';
 
 function Form () {
@@ -33,8 +33,13 @@ function Form () {
             });
             if (response.ok) {
                 const data = await response.json();
+                console.log(data)
                 const token = data.body.token;
                 dispatch(loginSuccess(token));
+                sessionStorage.setItem("token", token);
+                if (rememberMe) {
+                    localStorage.setItem("token", token);
+                }
                 navigate('/profile');
             } else {
                 const error = "Incorrect email/password"

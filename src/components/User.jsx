@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { updateUsername } from '../redux/actions/user.actions.jsx';
 import '../sass/components/_UserProfile.scss';
 
 function User () {
     const token = useSelector((state) => state.auth.token);
-    const firstname = useSelector((state) => state.auth.user.firstname);
-    const lastname = useSelector((state) => state.auth.user.lastname);
-    const username = useSelector((state) => state.auth.user.username);
+    const firstname = useSelector((state) => state.user.firstname);
+    const lastname = useSelector((state) => state.user.lastname);
+    const username = useSelector((state) => state.user.username);
     const [display, setDisplay] = useState(true);
     const [userName, setUserName] = useState('');
     const dispatch = useDispatch();
@@ -24,11 +25,10 @@ function User () {
             });
             if (response.ok) {
                 const data = await response.json();
+                const username = data.body.userName;
                 console.log(data);
-                dispatch({
-                    type: 'EDIT_USERNAME',
-                    payload: {username: data.body.userName}, 
-                });
+                dispatch(updateUsername(username));
+                setDisplay(!display);
             } else {
                 console.log("Invalid Fields")
             }
@@ -57,7 +57,7 @@ function User () {
                             <input
                                 type="text"
                                 id="username"
-                                defaultValue={username} 
+                                defaultValue={username}
                                 onChange={(event) => setUserName(event.target.value)}
                             />
                         </div>

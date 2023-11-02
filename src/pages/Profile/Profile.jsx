@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { userProfile } from '../../redux/actions/user.actions.jsx';
 import User from '../../components/User.jsx';
 import Account from '../../components/Account.jsx';
 import Footer from '../../components/Footer.jsx';
 import AccountCardData from '../../data/AccountCardData.json';
 
 function UserProfile () {
-    const isConnected = useSelector((state) => state.auth.isConnected);
     const token = useSelector((state) => state.auth.token);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (isConnected) {
+        if (token) {
             const userData = async () => {
                 try {
                     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
@@ -23,14 +23,11 @@ function UserProfile () {
                     });
                     if (response.ok) {
                         const data = await response.json();
-                        dispatch({
-                            type: 'GET_USERPROFILE',
-                            payload: {
-                                firstname: data.body.firstName,
-                                lastname: data.body.lastName,
-                                username: data.body.userName
-                            },
-                        });
+                        console.log(data);
+                        const firstname = data.body.firstName;
+                        const lastname = data.body.lastName;
+                        const username = data.body.userName;
+                        dispatch(userProfile(firstname, lastname, username));
                     } else {
                         console.log("error while retrieving profile");
                     }
@@ -40,7 +37,7 @@ function UserProfile () {
             };
             userData();
         }
-    }, [dispatch, token, isConnected]);
+    }, [dispatch, token]);
 
     return (
         <div className='profile-page'>
