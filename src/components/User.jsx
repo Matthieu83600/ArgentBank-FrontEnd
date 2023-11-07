@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUsername } from '../redux/actions/user.actions.jsx';
+import { isValidName } from "../utils/regex.jsx";
 import '../sass/components/_UserProfile.scss';
 
 function User () {
@@ -10,10 +11,17 @@ function User () {
     const username = useSelector((state) => state.user.username);
     const [display, setDisplay] = useState(true);
     const [userName, setUserName] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const dispatch = useDispatch();
 
     const handleSubmitUsername = async (event) => {
         event.preventDefault();
+        if (!isValidName(userName)) {
+            setErrorMessage("Invalid username");
+            return;
+        } else {
+            setErrorMessage("");
+        }
         try {
             const response = await fetch('http://localhost:3001/api/v1/user/profile', {
                 method: 'PUT',
@@ -83,6 +91,7 @@ function User () {
                             <button className="edit-username-button" onClick={handleSubmitUsername}>Save</button>
                             <button className="edit-username-button" onClick={() => setDisplay(!display)}>Cancel</button>
                         </div>
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
                     </form>
                 </div>
             }

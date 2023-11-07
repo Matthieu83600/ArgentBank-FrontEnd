@@ -27,7 +27,7 @@ function Header () {
                 </Link> 
                 {isConnected ? (
                     <div className='connected'>
-                        <Link to='/Profile'>
+                        <Link to='/profile'>
                             <i className='fa-solid fa-2x fa-circle-user' />
                             <p>{firstname}</p>
                         </Link>
