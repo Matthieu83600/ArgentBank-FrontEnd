@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { userProfile } from '../../redux/actions/user.actions.jsx';
 import User from '../../components/User.jsx';
 import Account from '../../components/Account.jsx';
-import Footer from '../../components/Footer.jsx';
 import AccountCardData from '../../data/AccountCardData.json';
 
+/* User profile page */
 function UserProfile () {
     const token = useSelector((state) => state.auth.token);
     const dispatch = useDispatch();
 
+    /* Asynchronous function that retrieves user data and updates it with useEffect */
     useEffect(() => {
         if (token) {
             const userData = async () => {
@@ -23,10 +24,14 @@ function UserProfile () {
                     });
                     if (response.ok) {
                         const data = await response.json();
-                        console.log(data);
+                        /* 
+                            Checking that the query response is indeed retrieved
+                            console.log(data) 
+                        */
                         const firstname = data.body.firstName;
                         const lastname = data.body.lastName;
                         const username = data.body.userName;
+                        /* Return user data in redux state */
                         dispatch(userProfile(firstname, lastname, username));
                     } else {
                         console.log("error while retrieving profile");
@@ -42,8 +47,11 @@ function UserProfile () {
     return (
         <div className='profile-page'>
             <main className='bg-dark'>
+                {/* Return user componant */}
                 < User />
+                {/* Return items from json file with map */}
                 {AccountCardData.map((data) => (
+                    /* Return account component */
                     <Account 
                         key={data.id}
                         title={data.title}
@@ -52,7 +60,6 @@ function UserProfile () {
                     />
                 ))}
             </main>
-            < Footer />
         </div>
     )
 }

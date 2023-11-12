@@ -5,15 +5,21 @@ import { isValidName } from "../utils/regex.jsx";
 import '../sass/components/_UserProfile.scss';
 
 function User () {
+    /* Updates user data on profile page from state redux */
     const token = useSelector((state) => state.auth.token);
     const firstname = useSelector((state) => state.user.firstname);
     const lastname = useSelector((state) => state.user.lastname);
     const username = useSelector((state) => state.user.username);
+    /* Manages the appearance of the username modification form */
     const [display, setDisplay] = useState(true);
+    /* Get username */
     const [userName, setUserName] = useState('');
+    /* Handle error message */
     const [errorMessage, setErrorMessage] = useState('');
+
     const dispatch = useDispatch();
 
+    /* Asynchronous username update function */
     const handleSubmitUsername = async (event) => {
         event.preventDefault();
         if (!isValidName(userName)) {
@@ -34,7 +40,10 @@ function User () {
             if (response.ok) {
                 const data = await response.json();
                 const username = data.body.userName;
-                console.log(data);
+                /* 
+                    Checking that the query response is indeed retrieved
+                    console.log(data) 
+                */
                 dispatch(updateUsername(username));
                 setDisplay(!display);
             } else {

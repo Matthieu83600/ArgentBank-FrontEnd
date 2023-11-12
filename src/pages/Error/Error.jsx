@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer";
 import GreenError from '../../assets/images/404-green.webp';
 import '../../sass/pages/_Error.scss';
 
+/* Error page if user uses unknown route */
 function Error () {
     return (
         <div className="error-page">
@@ -18,7 +18,6 @@ function Error () {
                     </Link>
                 </section>
             </main>
-            <Footer />
         </div>
     )
 }

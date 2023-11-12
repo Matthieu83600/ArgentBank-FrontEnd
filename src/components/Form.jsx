@@ -6,15 +6,20 @@ import { isValidEmail, isValidPassword } from '../utils/regex.jsx';
 import '../sass/components/_Form.scss';
 
 function Form () {
+    /* Allows you to retrieve the data entered by the user in the form */
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
+    /* Indicates an error message if data is invalid */
     const [errorMessage, setErrorMessage] = useState('');
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    /* Asynchronous form function */
     const handleSubmit = async (event) => {
         event.preventDefault();
+        /* Handle error message */
         if (!isValidEmail(email)) {
             setErrorMessage("Invalid email adress");
             return;
@@ -33,7 +38,10 @@ function Form () {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data)
+                /* 
+                    Checking that the query response is indeed retrieved
+                    console.log(data) 
+                */
                 const token = data.body.token;
                 dispatch(loginSuccess(token));
                 sessionStorage.setItem("token", token);
