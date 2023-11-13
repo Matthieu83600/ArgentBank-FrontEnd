@@ -7,9 +7,7 @@ import '../sass/components/_UserProfile.scss';
 function User () {
     /* Updates user data on profile page from state redux */
     const token = useSelector((state) => state.auth.token);
-    const firstname = useSelector((state) => state.user.firstname);
-    const lastname = useSelector((state) => state.user.lastname);
-    const username = useSelector((state) => state.user.username);
+    const userData = useSelector((state) => state.user.userData);
     /* Manages the appearance of the username modification form */
     const [display, setDisplay] = useState(true);
     /* Get username */
@@ -61,7 +59,7 @@ function User () {
                 <div>
                     <h2>Welcome back 
                         <br />
-                        {firstname} {lastname} !
+                        {userData.firstname} {userData.lastname} !
                     </h2>
                     <button className="edit-button" onClick={() => setDisplay(!display)}>Edit Name</button>
                 </div>
@@ -74,7 +72,7 @@ function User () {
                             <input
                                 type="text"
                                 id="username"
-                                defaultValue={username}
+                                defaultValue={userData.username}
                                 onChange={(event) => setUserName(event.target.value)}
                             />
                         </div>
@@ -83,7 +81,7 @@ function User () {
                             <input
                                 type="text"
                                 id="firstname" 
-                                defaultValue={firstname}
+                                defaultValue={userData.firstname}
                                 disabled={true}
                             />
                         </div>
@@ -92,7 +90,7 @@ function User () {
                             <input
                                 type="text"
                                 id="lastname" 
-                                defaultValue={lastname}
+                                defaultValue={userData.lastname}
                                 disabled={true}
                             />
                         </div>

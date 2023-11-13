@@ -28,11 +28,17 @@ function UserProfile () {
                             Checking that the query response is indeed retrieved
                             console.log(data) 
                         */
-                        const firstname = data.body.firstName;
-                        const lastname = data.body.lastName;
-                        const username = data.body.userName;
+                        const userData = {
+                            createdAt: data.body.createdAt,
+                            updatedAt: data.body.updatedAt,
+                            id: data.body.id,
+                            email: data.body.email,
+                            firstname: data.body.firstName,
+                            lastname: data.body.lastName,
+                            username: data.body.userName
+                        }
                         /* Return user data in redux state */
-                        dispatch(userProfile(firstname, lastname, username));
+                        dispatch(userProfile(userData));
                     } else {
                         console.log("error while retrieving profile");
                     }
