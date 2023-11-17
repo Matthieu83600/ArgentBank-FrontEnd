@@ -202,7 +202,7 @@ paths:
         '200':
           description: Note added to the transaction successfully
           schema: 
-            $ref: '#/definitions/TransactionNote'
+            $ref: '#/definitions/TransactionResponseNote'
         '401':
           description: Unauthorized user
         '404':
@@ -238,7 +238,7 @@ paths:
         '200':
           description: Note modified successfully
           schema:
-            $ref: '#/definitions/TransactionNote'
+            $ref: '#/definitions/TransactionResponseNote'
         '401':
           description: Unauthorized user
         '404':
@@ -382,6 +382,11 @@ definitions:
     properties:
       note:
         type: string
-      noteID:
+  TransactionResponseNote:
+    type: object
+    properties:
+      note:
         type: string
+      noteID:
+        type: string      
   
